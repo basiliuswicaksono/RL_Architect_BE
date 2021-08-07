@@ -1,12 +1,14 @@
 // import Response from '../responses/response.class';
 const Response = require('../responses/response.class');
-const { Style } = require('../models');
+const { Style, Project, Picture } = require('../models');
 
 class StyleController {
   static async getAll(req, res) {
     const response = new Response(res);
     try {
-      const styles = await Style.findAll();
+      const styles = await Style.findAll({
+        include: [{ model: Project }, { model: Picture }],
+      });
 
       return response.contentSuccess(response.statusOk, styles);
     } catch (error) {

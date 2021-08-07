@@ -5,6 +5,8 @@ const os = require('os');
 const routes = require('./routes');
 const Response = require('./responses/response.class');
 
+require('dotenv').config();
+
 const app = express();
 
 app.use(cors());

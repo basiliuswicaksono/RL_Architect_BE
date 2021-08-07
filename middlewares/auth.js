@@ -1,9 +1,9 @@
-import jwt from '../helpers/jwt';
-import Response from '../responses/response.class';
-import Admin from '../models';
+const jwt = require('../helpers/jwt');
+const Response = require('../responses/response.class');
+const { Admin } = require('../models');
 
 async function authentication(req, res, next) {
-  const response = new Response(req, res);
+  const response = new Response(res);
 
   try {
     let tokenBearer = req.get('Authorization');
@@ -35,8 +35,8 @@ async function authentication(req, res, next) {
     return next();
   } catch (error) {
     const statusCode = error.statusCode || response.statusForbidden;
-    return response.contentFail(error, statusCode, error.message);
+    return response.contentFail(statusCode, error.message);
   }
 }
 
-export default { authentication };
+module.exports = { authentication };

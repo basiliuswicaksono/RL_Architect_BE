@@ -1,11 +1,13 @@
-const { Project } = require('../models');
+const { Project, Picture } = require('../models');
 const Response = require('../responses/response.class');
 
 class ProjectController {
   static async getAll(req, res) {
     const response = new Response(res);
     try {
-      const projects = await Project.findAll();
+      const projects = await Project.findAll({
+        include: [{ model: Picture }],
+      });
 
       return response.contentSuccess(response.statusOk, projects);
     } catch (error) {

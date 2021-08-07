@@ -1,4 +1,3 @@
-// import bcrypt from 'bcrypt';
 const bcrypt = require('bcrypt');
 
 function hassPass(password) {
@@ -10,4 +9,4 @@ function comparePass(password, hassPassword) {
   return bcrypt.compareSync(password, hassPassword); // true
 }
 
-module.exports = { hassPass, comparePass };
+module.exports = { comparePass, hassPass }; //

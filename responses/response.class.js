@@ -17,11 +17,10 @@ class Response {
     });
   }
 
-  contentFail(code, errorMessage, errorCode) {
+  contentFail(code, errorMessage) {
     this.res.status(code).json({
       code,
       error: {
-        error_code: errorCode,
         message: errorMessage,
       },
     });

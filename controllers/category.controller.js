@@ -1,11 +1,13 @@
-const { Category } = require('../models');
+const { Category, Project, Style } = require('../models');
 const Response = require('../responses/response.class');
 
 class CategoryController {
   static async getAll(req, res) {
     const response = new Response(res);
     try {
-      const categories = await Category.findAll();
+      const categories = await Category.findAll({
+        include: [{ model: Style }, { model: Project }],
+      });
 
       return response.contentSuccess(response.statusOk, categories);
     } catch (error) {
